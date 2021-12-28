@@ -62,7 +62,7 @@
             <h3 style="text-align:center;">{{err}}</h3>
         </header>
 
-        <div class="container" >
+        <div class="container">
             <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
@@ -72,44 +72,44 @@
                 <div class="carousel-inner">
                     {{#each this.products}}
                     <div class="carousel-item " id={{@index}}>
-                    <img class="d-block w-100" 
-                        src=" {{picURL}} " 
-                        width = "300" height = "600"
-                        alt="{{name}}" 
-                        data-holder-rendered="true">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5 class="card-title" style="background-color:aquamarine; color:crimson; border-radius:10px">{{name}}</h5>
-                        <h5 class="card-title formatPrice" style="background-color:aquamarine; color:crimson; border-radius:10px">{{price}}</h5>
-                        <h5 class="card-title" style="background-color:aquamarine; color:crimson; border-radius:10px">{{cat}}</h5>
-                        <a href="/update/{{_id}}" class="btn btn-primary">Edit</a>
-                        <a href="/delete/{{_id}}" class="btn btn-primary">Delete</a>
-                    </div>
+                        <img class="d-block w-100" src=" {{picURL}} " width="300" height="600" alt="{{name}}"
+                            data-holder-rendered="true">
+                        <div class="carousel-caption d-none d-md-block">
+                            <div style="background-color:aquamarine; color:crimson; border-radius:10px">
+                                <h5 class="card-title" style=>Name: {{name}}</h5>
+                                <h5 class="card-title formatPrice">: {{price}}</h5>
+                                <h5 class="card-title">Category: {{cat}}</h5>
+                            </div>
+
+                            <a href="/update/{{_id}}" class="btn btn-primary">Edit</a>
+                            <a href="/delete/{{_id}}" class="btn btn-primary">Delete</a>
+                        </div>
                     </div>
                     {{/each}}
-                
-                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+
+                    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
             </div>
-        </div>
-        <script>
-            var valuePrice = document.querySelectorAll('.formatPrice')
-            valuePrice.forEach(element => {
-                element.innerHTML = formatCash(element.innerHTML) + " vnđ";
-            })
-            function formatCash(str) {
-                //9000 ['9', '0', '0', '0'] => ['0', '0', '0', '9']
-                return str.split('').reverse().reduce((prev, next, index) => {
-                    return ((index % 3) ? next : (next + ',')) + prev
+            <script>
+                var valuePrice = document.querySelectorAll('.formatPrice')
+                valuePrice.forEach(element => {
+                    element.innerHTML = formatCash(element.innerHTML) + " vnđ";
                 })
-            }
-        </script>
-    </div>
+                function formatCash(str) {
+                    //9000 ['9', '0', '0', '0'] => ['0', '0', '0', '9']
+                    return str.split('').reverse().reduce((prev, next, index) => {
+                        return ((index % 3) ? next : (next + ',')) + prev
+                    })
+                }
+            </script>
+        </div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
@@ -122,7 +122,7 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
     <script>
-        document.getElementById("0").className="carousel-item active"
+        document.getElementById("0").className = "carousel-item active"
     </script>
 </body>
 
