@@ -1,7 +1,6 @@
 const express = require('express')
 const { insertToDB, getAll, deleteObject, getDocumentById, updateDocument, findProductsByCategory, findProductsByProductName, checkPrice } = require('./databaseHandler')
 const app = express()
-
 app.set('view engine', 'hbs')
 app.use(express.urlencoded({ extended: true }))
 
@@ -95,11 +94,7 @@ app.get('/', async (req, res) => {
     res.render('home', { products: result })
 })
 
-// app.get('/allproducts', async (req, res) => {
-//     var all = await getAll("Products")
-//     console.log(all)
-//     res.render('allproducts', { products: all })
-// })
+
 app.get('/allproducts', async (req, res) => {
     var result = await getAll("Products")
     res.render('allproducts', { products: result })
@@ -107,9 +102,21 @@ app.get('/allproducts', async (req, res) => {
 
 app.get('/delete/:id', async (req, res) => {
     const idValue = req.params.id
+    const totalprod = 1;
     //viet ham xoa object dua tren id
-    await deleteObject(idValue, "Products")
-    res.redirect('/allproducts')
+
+    var result = await getAll("Products")
+    console.log(result.length-1)
+    if (result.length-1<totalprod){
+        var result = await getAll("Products")
+        res.render('home', { products: result,erro:"Cannot delete, total product <"+result.length })
+    }else{
+        await deleteObject(idValue, "Products")
+        res.redirect('/allproducts')
+    }
+    
+
+    
 })
 
 app.get('/create',(req,res)=>{
@@ -148,11 +155,11 @@ app.post('/searchByCategory', async (req, res) => {
     }
 })
 
-app.get('/', (req, res) => {
-    var today = new Date();
-    var name = "Bin_Shop"
-    res.render('home', { ht: today, name: name, ds: ds })
-})
+// app.get('/', (req, res) => {
+//     var today = new Date();
+//     var name = "Bin_Shop"
+//     res.render('home', { ht: today, name: name, ds: ds })
+// })
 
 app.post('/searchByProductName', async (req, res) => {
     const name = req.body.name

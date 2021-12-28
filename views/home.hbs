@@ -77,12 +77,12 @@
                         <div class="carousel-caption d-none d-md-block">
                             <div style="background-color:aquamarine; color:crimson; border-radius:10px">
                                 <h5 class="card-title" style=>Name: {{name}}</h5>
-                                <h5 class="card-title formatPrice">: {{price}}</h5>
+                                <h5 class="card-title formatPrice">{{price}}</h5>
                                 <h5 class="card-title">Category: {{cat}}</h5>
                             </div>
 
                             <a href="/update/{{_id}}" class="btn btn-primary">Edit</a>
-                            <a href="/delete/{{_id}}" class="btn btn-primary">Delete</a>
+                            <a href="/delete/{{_id}}" class="btn btn-danger">Delete</a>
                         </div>
                     </div>
                     {{/each}}
@@ -109,7 +109,13 @@
                     })
                 }
             </script>
+        
         </div>
+        <div class='container'>
+            <h3 style="background-color:rgb(248, 66, 66); color:rgb(255, 255, 255); border-radius:10px; text-align:center"> {{erro}} </h3>
+        </div>
+        
+
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
