@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <div class="container bg-info">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                    <div class="logo"><img src="../public/img/logo.png" alt=""></div>
+                    <h2>Duc Anh Store</h2>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Edit
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/create">Create</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/allproducts">Management products</a>
+                                    <div class="dropdown-divider"></div>
+
+                                </div>
+                            </li>
+                            </li>
+
+                        </ul>
+                        <div class="d-flex justify-content-between">
+                            <form class="form-inline my-2 my-lg-0" action="/searchByProductName" method="post">
+                                <input class="form-control mr-sm-2" type="text" name="name" id="search-input"
+                                    placeholder="Search here">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+
+            <div class="mt-4">
+                <h2>My Products</h2>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">price</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Picture</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each this.products}}
+                        <tr>
+                            <th scope="col">{{_id}}</th>
+                            <td scope="col">{{name}}</td>
+                            <td scope="col">{{price}}</td>
+                            <td scope="col">{{cat}}</td>
+                            <td><img src="{{picURL}}" width="120" height="100" /></td>
+                            <td>
+                                <a href="/update/{{_id}}"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
+                                <a href="/delete/{{_id}}"
+                                    onclick="return confirm('Are you sure to delete this record ?');"><i
+                                        class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+                        </tr>
+                        {{/each}}
+
+
+
+
+
+
+</html>

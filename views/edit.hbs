@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+    <link rel="stylesheet" href="../css/app.css">
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <div class="container bg-info">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                    <div class="logo"><img src="../public/img/logo.png" alt=""></div>
+                    <h2>Duc Anh Store</h2>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Edit
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/create">Create</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/allproducts">Management products</a>
+                                    <div class="dropdown-divider"></div>
+
+                                </div>
+                            </li>
+                            </li>
+
+                        </ul>
+                        <div class="d-flex justify-content-between">
+                            <form class="form-inline my-2 my-lg-0" action="/searchByProductName" method="post">
+                                <input class="form-control mr-sm-2" type="text" name="name" id="search-input"
+                                    placeholder="Search here">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <div class="cart ml-4">
+                                <i class="fas fa-shopping-cart"></i>
+                                <sub>0</sub>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="container">
+            <div class="mt-4">
+                <h3>Edit Toys</h3>
+                <form method="post" action="/update">
+                    <input type="hidden" name="txtId" value="{{product._id}}">
+                    <div class="form-group">
+                        <label for="name">name</label>
+                        <input type="text" class="form-control" value="{{product.name}}" id="name" name="txtName">
+                    </div>
+                    <div class="form-group">
+                        <label for="img">img</label>
+                        <input type="text" class="form-control" value="{{product.picURL}}" id="img" name="txtURL">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">price</label>
+                        <input type="text" class="form-control" value="{{product.price}}" id="price" name="txtPrice">
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        Category:
+                        <select name="txtCategory" id="txtCategory">
+                            <option value="Búp Bê">Búp Bê</option>
+                            <option value="Lego">Lego</option>
+                            <option value="Mô Hình">Mô Hình</option>
+                            <option value="Lắp Ráp">Lắp Ráp</option>
+                            <option value="Gấu Bông">Gấu Bông</option>
+                            <option value="Điều Khiển Từ Xa">Điều Khiển Từ Xa</option>
+                        </select>
+                        <br />
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-database"></i> Submit</button>
+                    <a class="btn btn-info btn-sm" href="/"><i class="fa fa-list-alt"></i> View All</a>
+                </form>
+                <h3 style="background-color:rgb(115, 245, 201); color:crimson; border-radius:10px"> {{err}} </h3>
+                {{!-- {{#if product.iserror}}
+                <h3 style="background-color:aquamarine; color:crimson; border-radius:10px"> Error: {{product.Error}}
+                </h3>
+                {{else}}
+
+                {{/if}} --}}
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

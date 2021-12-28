@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
+</head>
+<style>
+    h3 {
+        color: red;
+    }
+</style>
+
+<body>
+    <div class="app">
+        <header>
+            <div class="container bg-info">
+                <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+                    <div class="logo"><img src="../public/img/logo.png" alt=""></div>
+                    <h2>Duc Anh Store</h2>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Edit
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/create">Create</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/allproducts">Management products</a>
+
+                                </div>
+                            </li>
+                            </li>
+                        </ul>
+                        <div class="d-flex justify-content-between">
+                            <form class="form-inline my-2 my-lg-0" action="/searchByProductName" method="post">
+                                <input class="form-control mr-sm-2" type="text" name="name" id="search-input"
+                                    placeholder="Search here">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+            </div>
+            <h3 style="text-align:center;">{{err}}</h3>
+        </header>
+
+        <div class="container" >
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleCaptions" data-slide-to="0" class=""></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="1" class="active"></li>
+                    <li data-target="#carouselExampleCaptions" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                    {{#each this.products}}
+                    <div class="carousel-item " id={{@index}}>
+                    <img class="d-block w-100" 
+                        src=" {{picURL}} " 
+                        width = "300" height = "600"
+                        alt="{{name}}" 
+                        data-holder-rendered="true">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="card-title" style="background-color:aquamarine; color:crimson; border-radius:10px">{{name}}</h5>
+                        <h5 class="card-title formatPrice">{{price}}</h5>
+                        <h5 class="card-title">{{cat}}</h5>
+                        <a href="/update/{{_id}}" class="btn btn-primary">Edit</a>
+                        <a href="/delete/{{_id}}" class="btn btn-primary">Delete</a>
+                    </div>
+                    </div>
+                    {{/each}}
+                
+                <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <script>
+            var valuePrice = document.querySelectorAll('.formatPrice')
+            valuePrice.forEach(element => {
+                element.innerHTML = formatCash(element.innerHTML) + " vnđ";
+            })
+            function formatCash(str) {
+                //9000 ['9', '0', '0', '0'] => ['0', '0', '0', '9']
+                return str.split('').reverse().reduce((prev, next, index) => {
+                    return ((index % 3) ? next : (next + ',')) + prev
+                })
+            }
+        </script>
+    </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script>
+        document.getElementById("0").className="carousel-item active"
+    </script>
+</body>
+
+</html>
